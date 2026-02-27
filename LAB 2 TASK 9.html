@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>LAB 2 TASK 9</title>
+    </head>
+    <body>
+        <script>
+const savedCounter = sessionStorage.getItem('pageCounter') || '0';
+let currentCount = parseInt(savedCounter) + 1;
+sessionStorage.setItem('pageCounter', currentCount.toString());
+console.log(`Page reload count for this session: ${currentCount}`);
+        </script>
+    </body>
+</html>

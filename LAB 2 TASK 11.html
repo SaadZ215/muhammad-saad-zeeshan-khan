@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>LAB 2 TASK 11</title>
+    </head>
+    <body>
+        <script>
+const buffer = new ArrayBuffer(16);
+
+
+const view = new Uint8Array(buffer);
+
+
+for (let i = 0; i < view.length; i++) {
+    view[i] = 65 + i; 
+}
+
+console.log("Binary Data (Uint8Array):", view);
+
+
+const decoder = new TextDecoder();
+const result = decoder.decode(view);
+
+console.log("Decoded string:", result);
+        </script>
+    </body>
+</html>

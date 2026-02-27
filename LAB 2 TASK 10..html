@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Ayesha's Chat App</h2>
+    
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    
+    <button id="sendBtn">Send</button>
+
+    <div id="chatLog"></div>
+
+    <script>
+    
+const socket = new WebSocket('wss://echo.websocket.org/');
+
+const sendBtn = document.getElementById('sendBtn');
+const messageInput = document.getElementById('messageInput');
+
+socket.addEventListener('open', () => {
+    console.log("Connected to the echo server!");
+});
+
+sendBtn.addEventListener('click', () => {
+    const message = messageInput.value; 
+    
+    if (message && socket.readyState === WebSocket.OPEN) {
+        socket.send(message);          
+        messageInput.value = '';       
+    }
+});
+
+socket.addEventListener('message', (event) => {
+    console.log("Message from server:", event.data);
+    document.getElementById('chatLog').innerHTML += `<p>${event.data}</p>`;
+});
+    </script>
+</body>
+</html>

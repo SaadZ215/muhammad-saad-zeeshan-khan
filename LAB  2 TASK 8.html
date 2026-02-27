@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>LAB 2 TASK 8</title>
+    </head>
+    <body>
+        <script>
+const fileInput = document.getElementById('fileInput');
+
+
+        fileInput.addEventListener('change', function(event) {
+            const selectedFile = event.target.files[0];
+
+    
+            if (!selectedFile) {
+                console.log("No file selected.");
+                return;
+            }
+
+        
+            if (selectedFile.type !== "text/plain") {
+                console.error("Please select a plain text (.txt) file.");
+                return;
+            }
+
+            
+            const reader = new FileReader();
+
+        
+            reader.onload = function(e) {
+                const fileContent = e.target.result;
+                console.log("File content loaded successfully:");
+                console.log(fileContent);
+            };
+
+            
+            reader.readAsText(selectedFile);
+        });
+        </script>
+    </body>
+</html>

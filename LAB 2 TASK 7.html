@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>LAB 2 TASK 7</title>
+    </head>
+    <body>
+        <script>
+const getProducts=() =>{
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Fetching product list...");
+      resolve([101, 102, 103]);
+    }, 1000);
+  });
+}
+const getProductDetails=(productId) =>{
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(`Fetching details for product ${productId}`);
+      resolve({ id: productId, name: "Laptop", price: 50000 });
+    }, 1000);
+  });
+};
+
+async function displayProductInfo() {
+  try {
+    const products = await getProducts();
+
+
+    const details = await getProductDetails(products[0]);
+
+    console.log("Product details:", details);
+    
+  } catch (error) {
+    
+    console.error("Error:", error);
+  }
+}
+
+displayProductInfo();
+
+        </script>
+    </body>
+</html>

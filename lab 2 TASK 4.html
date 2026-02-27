@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>LAB 2 TASK 4</title>
+    </head>
+    <body>
+        <script>
+    
+            const fetchProductIDs = () => {
+                return new Promise(resolve => {
+                    setTimeout(() => resolve([101, 102, 103]), 1000);
+                });
+            };
+
+            const fetchProductDetails = (id) => {
+                return new Promise((resolve, reject) => {
+                    const networkError = true; 
+                    setTimeout(() => {
+                        if (networkError) {
+                            reject("Network connection failed while fetching product details."); 
+                        } else {
+                            resolve({ id: id, name: "Product A" }); 
+                        }
+                    }, 1000);
+                });
+            };
+
+                        fetchProductIDs()
+                .then(ids => {
+                    console.log("Step 1: Product IDs received:", ids);
+                    return fetchProductDetails(ids[0]); 
+                }) 
+                .then(product => {
+                
+                    console.log("Product Details:", product);
+                })
+                .catch(error => {
+                    console.error("Task 4 Error occurred:", error); 
+                });
+        </script>
+    </body>
+</html>
